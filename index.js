@@ -1,22 +1,17 @@
 module.exports = (Franz) => {
     class Zulip extends Franz {
-        async validateUrl(url) {
-            const baseUrl = new window.URL(url);
-            const apiVersion = 'api/v1';
-            try {
-                const resp = await window.fetch(`${baseUrl.origin}/${apiVersion}/server_settings`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                });
-                const data = await resp.json();
-
-                return Object.hasOwnProperty.call(data, 'realm_uri');
-            } catch (err) {
-                console.error(err);
-            }
-            return false;
+        validateServer(URL) {
+            const api = `${URL}/api/v1/server_settings`;
+            return new Promise((resolve, reject) => {
+                $.get(api, (resp) => {
+                    if (typeof(resp) === 'object' && 'realm_uri' in resp) {
+                        resolve();
+                    } else {
+                        reject();
+                    }
+                }).fail(reject);
+            });
         }
     }
+    return Zulip;
 };
