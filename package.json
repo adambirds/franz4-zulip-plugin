@@ -1,0 +1,22 @@
+{
+  "name": "Zulip",
+  "version": "1.0.0",
+  "description": "Zulip",
+  "main": "index.js",
+  "author": "Adam Birds <adam.birds@adbtechltd.co.uk>",
+  "license": "MIT",
+  "config": {
+    "serviceURL": "",
+    "serviceName": "Zulip",
+    "message": "",
+    "popup": [],
+    "hasNotificationSound": true,
+    "hasTeamID": true,
+    "customURL": true,
+    "hostedOnly": true,
+    "hasIndirectMessages": false,
+    "webviewOptions": {
+		"disablewebsecurity": ""
+    }
+  }
+}
